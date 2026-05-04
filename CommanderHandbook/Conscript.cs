@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CommanderHandbook;
+﻿namespace CommanderHandbook;
 
 public class Conscript : Soldier
 {
     public int TermOfService { get; set; }
-
-    public override string GetInfo() => $"Строковик: {base.GetInfo()}, Термін: {TermOfService} міс.";
+    public override string GetInfo() => $"[Conscript] {base.GetInfo()}, Term: {TermOfService} months";
 }

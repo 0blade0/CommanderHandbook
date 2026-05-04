@@ -46,10 +46,10 @@
             dgvSoldiers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvSoldiers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSoldiers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSoldiers.Location = new Point(296, 149);
+            dgvSoldiers.Location = new Point(250, 126);
             dgvSoldiers.Name = "dgvSoldiers";
             dgvSoldiers.RowHeadersWidth = 51;
-            dgvSoldiers.Size = new Size(300, 188);
+            dgvSoldiers.Size = new Size(510, 298);
             dgvSoldiers.TabIndex = 0;
             // 
             // btnAll

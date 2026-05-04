@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CommanderHandbook;
+﻿namespace CommanderHandbook;
 
 public class HandbookManager
 {
@@ -10,9 +6,7 @@ public class HandbookManager
 
     public void AddSoldier(Soldier s) => allSoldiers.Add(s);
     public void DeleteSoldier(Soldier s) => allSoldiers.Remove(s);
-
     public List<Soldier> SortByAlphabet() => [.. allSoldiers.OrderBy(s => s.LastName)];
-
     public List<Officer> GetOfficers() => [.. allSoldiers.OfType<Officer>()];
     public List<Conscript> GetConscripts() => [.. allSoldiers.OfType<Conscript>()];
 }
