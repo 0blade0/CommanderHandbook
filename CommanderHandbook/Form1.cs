@@ -96,4 +96,15 @@ public partial class Form1 : Form
     {
         MessageBox.Show("Функція видалення буде реалізована в наступному кроці.");
     }
+
+    private void btnAdd_Click(object sender, EventArgs e)
+    {
+        using var addForm = new AddForm();
+
+        if (addForm.ShowDialog() == DialogResult.OK && addForm.NewSoldier != null)
+        {
+            _manager.AddSoldier(addForm.NewSoldier);
+            ShowAll();
+        }
+    }
 }
