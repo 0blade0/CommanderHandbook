@@ -12,6 +12,8 @@ public partial class Form1 : Form
     {
         InitializeComponent();
         txtSearch.TextChanged += txtSearch_TextChanged;
+        btnSort.Click += btnSort_Click;
+        btnEdit.Click += btnEdit_Click;
 
         SeedData();
 
@@ -81,7 +83,10 @@ public partial class Form1 : Form
     private void btnConscripts_Click(object sender, EventArgs e)
         => UpdateGrid(_manager.GetConscripts());
 
-    private void btnSort_Click(object sender, EventArgs e) => ShowAll();
+    private void btnSort_Click(object? sender, EventArgs e)
+    {
+    UpdateGrid(_manager.SortByAlphabet());
+    }
 
     private void txtSearch_TextChanged(object? sender, EventArgs e)
     {
@@ -91,6 +96,7 @@ public partial class Form1 : Form
     {
 
     }
+
 
     private void btnDelete_Click(object sender, EventArgs e)
     {
@@ -103,7 +109,22 @@ public partial class Form1 : Form
             MessageBox.Show("Спочатку виберіть бійця у таблиці!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
         }
     }
+    private void btnEdit_Click(object? sender, EventArgs e)
+    {
+        if (dgvSoldiers.CurrentRow?.DataBoundItem is Soldier selectedSoldier)
+        {
+            using var editForm = new AddForm(selectedSoldier);
 
+            if (editForm.ShowDialog() == DialogResult.OK)
+            {
+                ShowAll();
+            }
+        }
+        else
+        {
+            MessageBox.Show("Спочатку виберіть бійця для редагування!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+    }
     private void btnAdd_Click(object sender, EventArgs e)
     {
         using var addForm = new AddForm();
