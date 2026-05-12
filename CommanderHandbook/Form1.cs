@@ -94,7 +94,14 @@ public partial class Form1 : Form
 
     private void btnDelete_Click(object sender, EventArgs e)
     {
-        MessageBox.Show("Функція видалення буде реалізована в наступному кроці.");
+        if (dgvSoldiers.CurrentRow?.DataBoundItem is Soldier selectedSoldier)
+        {
+            _manager.DeleteSoldier(selectedSoldier);
+            ShowAll();
+        }else
+        {
+            MessageBox.Show("Спочатку виберіть бійця у таблиці!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
+        }
     }
 
     private void btnAdd_Click(object sender, EventArgs e)
