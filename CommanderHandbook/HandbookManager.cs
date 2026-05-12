@@ -20,4 +20,18 @@ public class HandbookManager
 
         return [.. allSoldiers.Where(s => s.LastName.StartsWith(query, StringComparison.OrdinalIgnoreCase))];
     }
+    public List<string> GetUniqueUnits()
+    {
+        return [.. allSoldiers.Where(s => !string.IsNullOrWhiteSpace(s.Unit))
+                          .Select(s => s.Unit!)
+                          .Distinct()
+                          .OrderBy(u => u)];
+    }
+    public List<Soldier> FilterByUnit(string unitName)
+    {
+        if (unitName == "Всі підрозділи" || string.IsNullOrWhiteSpace(unitName))
+            return SortByAlphabet();
+
+        return [.. allSoldiers.Where(s => s.Unit == unitName)];
+    }
 }

@@ -15,9 +15,12 @@ public partial class Form1 : Form
         btnSort.Click += btnSort_Click;
         btnEdit.Click += btnEdit_Click;
 
+        cmbUnitFilter.SelectedIndexChanged += cmbUnitFilter_SelectedIndexChanged;
         SeedData();
 
+        RefreshUnits();
         ShowAll();
+
     }
 
     private void SeedData()
@@ -85,7 +88,7 @@ public partial class Form1 : Form
 
     private void btnSort_Click(object? sender, EventArgs e)
     {
-    UpdateGrid(_manager.SortByAlphabet());
+        UpdateGrid(_manager.SortByAlphabet());
     }
 
     private void txtSearch_TextChanged(object? sender, EventArgs e)
@@ -104,9 +107,10 @@ public partial class Form1 : Form
         {
             _manager.DeleteSoldier(selectedSoldier);
             ShowAll();
-        }else
+        }
+        else
         {
-            MessageBox.Show("Спочатку виберіть бійця у таблиці!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
+            MessageBox.Show("Спочатку виберіть бійця у таблиці!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
     private void btnEdit_Click(object? sender, EventArgs e)
@@ -133,6 +137,30 @@ public partial class Form1 : Form
         {
             _manager.AddSoldier(addForm.NewSoldier);
             ShowAll();
+        }
+    }
+
+    private void label2_Click(object sender, EventArgs e)
+    {
+
+    }
+    private void RefreshUnits()
+    {
+        cmbUnitFilter.Items.Clear();
+        cmbUnitFilter.Items.Add("Всі підрозділи");
+
+        foreach (var unit in _manager.GetUniqueUnits())
+        {
+            cmbUnitFilter.Items.Add(unit);
+        }
+
+        cmbUnitFilter.SelectedIndex = 0;
+    }
+    private void cmbUnitFilter_SelectedIndexChanged(object? sender, EventArgs e)
+    {
+        if (cmbUnitFilter.SelectedItem != null)
+        {
+            UpdateGrid(_manager.FilterByUnit(cmbUnitFilter.SelectedItem.ToString()!));
         }
     }
 }

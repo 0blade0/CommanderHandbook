@@ -38,6 +38,8 @@
             btnEdit = new Button();
             txtSearch = new TextBox();
             label1 = new Label();
+            cmbUnitFilter = new ComboBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvSoldiers).BeginInit();
             SuspendLayout();
             // 
@@ -104,7 +106,7 @@
             // 
             btnAdd.BackColor = SystemColors.ActiveCaptionText;
             btnAdd.ForeColor = SystemColors.ControlLightLight;
-            btnAdd.Location = new Point(109, 61);
+            btnAdd.Location = new Point(32, 61);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(94, 29);
             btnAdd.TabIndex = 5;
@@ -115,7 +117,7 @@
             // btnDelete
             // 
             btnDelete.BackColor = Color.Coral;
-            btnDelete.Location = new Point(502, 61);
+            btnDelete.Location = new Point(666, 61);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 29);
             btnDelete.TabIndex = 6;
@@ -127,7 +129,7 @@
             // 
             btnEdit.BackColor = SystemColors.ActiveCaptionText;
             btnEdit.ForeColor = SystemColors.ControlLightLight;
-            btnEdit.Location = new Point(296, 61);
+            btnEdit.Location = new Point(189, 61);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(94, 29);
             btnEdit.TabIndex = 7;
@@ -150,11 +152,32 @@
             label1.TabIndex = 9;
             label1.Text = "Пошук за прізвищем";
             // 
+            // cmbUnitFilter
+            // 
+            cmbUnitFilter.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbUnitFilter.FormattingEnabled = true;
+            cmbUnitFilter.Location = new Point(384, 61);
+            cmbUnitFilter.Name = "cmbUnitFilter";
+            cmbUnitFilter.Size = new Size(151, 28);
+            cmbUnitFilter.TabIndex = 10;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(384, 38);
+            label2.Name = "label2";
+            label2.Size = new Size(167, 20);
+            label2.TabIndex = 11;
+            label2.Text = "Фільтр за підрозділом:";
+            label2.Click += label2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label2);
+            Controls.Add(cmbUnitFilter);
             Controls.Add(label1);
             Controls.Add(txtSearch);
             Controls.Add(btnEdit);
@@ -185,5 +208,7 @@
         private Button btnEdit;
         private TextBox txtSearch;
         private Label label1;
+        private ComboBox cmbUnitFilter;
+        private Label label2;
     }
 }
