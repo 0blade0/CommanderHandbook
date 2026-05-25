@@ -101,12 +101,21 @@ public partial class Form1 : Form
     }
 
 
-    private void btnDelete_Click(object sender, EventArgs e)
+    private void btnDelete_Click(object? sender, EventArgs e)
     {
         if (dgvSoldiers.CurrentRow?.DataBoundItem is Soldier selectedSoldier)
         {
-            _manager.DeleteSoldier(selectedSoldier);
-            ShowAll();
+            DialogResult dialogResult = MessageBox.Show(
+            $"Ви впевнені, що хочете видалити запис: {selectedSoldier.Rank} {selectedSoldier.LastName}?",
+            "Підтвердження видалення",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+            );
+            if (dialogResult == DialogResult.Yes)
+            {
+                _manager.DeleteSoldier(selectedSoldier);
+                ShowAll();
+            }
         }
         else
         {
