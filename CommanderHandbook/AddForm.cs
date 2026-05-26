@@ -40,19 +40,19 @@ namespace CommanderHandbook
             cmbType.Items.AddRange(new[] { "Строковик", "Офіцер" });
             cmbType.SelectedIndex = 0;
 
-            AddLabeledControl(panel, "Тип:", cmbType);
+            AddLabeledControl(panel, "Тип військовослужбовця:", cmbType);
             AddLabeledControl(panel, "Прізвище:", txtLastName);
             AddLabeledControl(panel, "Ім'я:", txtFirstName);
             AddLabeledControl(panel, "По батькові:", txtPatronymic);
             AddLabeledControl(panel, "Звання:", cmbRank);
-            AddLabeledControl(panel, "Дата звання:", dtpRankDate);
+            AddLabeledControl(panel, "Дата присвоєння звання:", dtpRankDate);
             AddLabeledControl(panel, "Посада:", txtPosition);
             AddLabeledControl(panel, "Підрозділ:", txtUnit);
             AddLabeledControl(panel, "Форма служби:", cmbServiceForm);
             AddLabeledControl(panel, "Період служби:", txtServicePeriod);
             AddLabeledControl(panel, "Цивільна професія:", txtCivilianProf);
             AddLabeledControl(panel, "Адреса батьків:", txtParentsAddress);
-            AddLabeledControl(panel, "Характер:", txtCharacter);
+            AddLabeledControl(panel, "Характер особи:", txtCharacter);
             AddLabeledControl(panel, "Ставлення до служби:", txtAttitude);
 
             panel.Controls.Add(btnSave);
