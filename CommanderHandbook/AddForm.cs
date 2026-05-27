@@ -27,11 +27,10 @@ namespace CommanderHandbook
         public AddForm(Soldier? editSoldier = null)
         {
             _soldierToEdit = editSoldier;
-
-
             Text = _soldierToEdit == null ? "Новий військовослужбовець" : "Редагування анкети";
             Size = new Size(350, 600);
             StartPosition = FormStartPosition.CenterParent;
+            dtpRankDate.MaxDate = DateTime.Now;
 
             FlowLayoutPanel panel = new FlowLayoutPanel { Dock = DockStyle.Fill, FlowDirection = FlowDirection.TopDown, Padding = new Padding(20), AutoScroll = true, WrapContents = false };
 
