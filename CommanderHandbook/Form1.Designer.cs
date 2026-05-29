@@ -40,6 +40,7 @@
             label1 = new Label();
             cmbUnitFilter = new ComboBox();
             label2 = new Label();
+            lblRecordCount = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvSoldiers).BeginInit();
             SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             dgvSoldiers.Location = new Point(250, 126);
             dgvSoldiers.Name = "dgvSoldiers";
             dgvSoldiers.RowHeadersWidth = 51;
-            dgvSoldiers.Size = new Size(510, 298);
+            dgvSoldiers.Size = new Size(510, 275);
             dgvSoldiers.TabIndex = 0;
             // 
             // btnAll
@@ -171,11 +172,23 @@
             label2.Text = "Фільтр за підрозділом:";
             label2.Click += label2_Click;
             // 
+            // lblRecordCount
+            // 
+            lblRecordCount.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblRecordCount.AutoSize = true;
+            lblRecordCount.Font = new Font("Segoe UI", 10F);
+            lblRecordCount.Location = new Point(250, 418);
+            lblRecordCount.Name = "lblRecordCount";
+            lblRecordCount.Size = new Size(167, 23);
+            lblRecordCount.TabIndex = 12;
+            lblRecordCount.Text = "Знайдено записів: 0";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblRecordCount);
             Controls.Add(label2);
             Controls.Add(cmbUnitFilter);
             Controls.Add(label1);
@@ -210,5 +223,6 @@
         private Label label1;
         private ComboBox cmbUnitFilter;
         private Label label2;
+        private Label lblRecordCount;
     }
 }

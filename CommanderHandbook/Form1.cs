@@ -70,10 +70,12 @@ public partial class Form1 : Form
         _manager.AddSoldier(new Conscript { LastName = "Тарасенко", FirstName = "Марк", Patronymic = "Ігорович", Rank = "Старший солдат", Unit = "1 рота", TermOfService = 18 });
     }
 
-    private void UpdateGrid(object data)
+    private void UpdateGrid<T>(List<T> data)
     {
         dgvSoldiers.DataSource = null;
         dgvSoldiers.DataSource = data;
+
+        lblRecordCount.Text = $"Знайдено записів: {data.Count}";
     }
 
     private void ShowAll() => UpdateGrid(_manager.SortByAlphabet());

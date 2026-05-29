@@ -12,7 +12,7 @@ namespace CommanderHandbook
         private TextBox txtLastName = new() { Width = 250 };
         private TextBox txtFirstName = new() { Width = 250 };
         private TextBox txtPatronymic = new() { Width = 250 };
-        private ComboBox cmbRank = new() { Width = 250, DropDownStyle = ComboBoxStyle.DropDown };
+        private ComboBox cmbRank = new() { Width = 250, DropDownStyle = ComboBoxStyle.DropDownList };
         private DateTimePicker dtpRankDate = new() { Width = 250 };
         private TextBox txtPosition = new() { Width = 250 };
         private TextBox txtUnit = new() { Width = 250 };
@@ -34,9 +34,10 @@ namespace CommanderHandbook
 
             FlowLayoutPanel panel = new FlowLayoutPanel { Dock = DockStyle.Fill, FlowDirection = FlowDirection.TopDown, Padding = new Padding(20), AutoScroll = true, WrapContents = false };
 
-            cmbRank.Items.AddRange(new[] { "Рядовий", "Старший солдат", "Сержант", "Молодший лейтенант", "Лейтенант", "Капітан", "Майор", "Підполковник", "Полковник" });
+
             cmbServiceForm.Items.AddRange(new[] { "Термінова", "Контрактна", "Кадрова", "За мобілізацією" });
             cmbType.Items.AddRange(new[] { "Строковик", "Офіцер" });
+            cmbType.SelectedIndexChanged += CmbType_SelectedIndexChanged;
             cmbType.SelectedIndex = 0;
 
             AddLabeledControl(panel, "Тип військовослужбовця:", cmbType);
@@ -61,6 +62,8 @@ namespace CommanderHandbook
 
             if (_soldierToEdit != null)
             {
+            cmbType.SelectedItem = _soldierToEdit is Officer? "Офіцер" : "Строковик";
+            cmbType.Enabled = false;
                 txtLastName.Text = _soldierToEdit.LastName;
                 txtFirstName.Text = _soldierToEdit.FirstName;
                 txtPatronymic.Text = _soldierToEdit.Patronymic;
@@ -76,11 +79,26 @@ namespace CommanderHandbook
                 txtCharacter.Text = _soldierToEdit.CharacterTraits;
                 txtAttitude.Text = _soldierToEdit.AttitudeToService;
 
-                cmbType.SelectedItem = _soldierToEdit is Officer ? "Офіцер" : "Строковик";
-                cmbType.Enabled = false;
             }
         }
+        private void CmbType_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            cmbRank.Items.Clear();
 
+            if (cmbType.SelectedItem?.ToString() == "Строковик")
+            {
+                cmbRank.Items.AddRange(new[] { "Рядовий", "Старший солдат", "Сержант" });
+            }
+            else
+            {
+                cmbRank.Items.AddRange(new[] { "Молодший лейтенант", "Лейтенант", "Капітан", "Майор", "Підполковник", "Полковник" });
+            }
+
+            if (cmbRank.Items.Count > 0)
+            {
+                cmbRank.SelectedIndex = 0;
+            }
+        }
         private void AddLabeledControl(Panel p, string labelText, Control c)
         {
             p.Controls.Add(new Label { Text = labelText, AutoSize = true, Margin = new Padding(0, 10, 0, 0) });
